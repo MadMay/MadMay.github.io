@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <title>Document</title>
+  <title>M_May的博客</title>
   <link rel="stylesheet" type="text/css" href="../res/layui/css/layui.css">
   <link rel="stylesheet" type="text/css" href="../res/css/main.css">
 <!--加载meta IE兼容文件-->
@@ -141,8 +141,6 @@
 	   $(".footer").load("footer.html")
 	  $(".headerpage").load("header.html",function(res,status,xhr){
 	  	var url = window.location.href;
-	  	console.log(url)
-	  	console.log($(".nav a"))
 	  	if(url.match('index')){
 	  		$(".nav a").eq(0).addClass("active").siblings().removeClass("active")
 	  	}
@@ -155,8 +153,11 @@
 	  	else if(url.match('album')){
 	  		$(".nav a").eq(3).addClass("active").siblings().removeClass("active")
 	  	}
-	  	else{
+	  	else if(url.match('works')){
 	  		$(".nav a").eq(4).addClass("active").siblings().removeClass("active")
+	  	}
+	  	else{
+	  		$(".nav a").eq(5).addClass("active").siblings().removeClass("active")
 	  	}
 	  })
    layui.config({

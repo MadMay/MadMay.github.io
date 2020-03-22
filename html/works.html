@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>M_May的博客</title>
+  <link rel="stylesheet" type="text/css" href="../res/layui/css/layui.css">
+  <link rel="stylesheet" type="text/css" href="../res/css/main.css">
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+	<div class="headerpage"></div>
+	<div class="margin"></div>
+	<div id="app">
+		<el-row :gutter="0" justify="center" type="flex" >
+			<el-col :xs="24" :sm="24" :md="18" :xl="18">
+				<ul>
+					<li>
+						 <el-tooltip class="item" effect="dark" content="PC端浏览体验更加" placement="right">
+							<el-link type="primary" href="../works/vue-shop/index.html" target="_blank"><h2 class="title">电商后台管理系统</h2></el-link>
+						 </el-tooltip>
+						<div class="summary"><span style="color:#000;font-size: 16px;font-weight: 500;">说明：</span>使用Vue+VueRouter+Axios+ElementUI+Echarts编写的商品后台管理系统</div>
+						<div class="pageIntro">网站界面如下图:</div>
+						<div class="workImg">
+							<el-carousel>
+							  <el-carousel-item v-for="(item,index) in shopImg" :key="index" style="display:inline-block">
+								<el-image :src="item" :fit="fit"></el-image>
+							  </el-carousel-item>
+							</el-carousel>
+						</div>
+					</li>
+					<li>
+						<el-tooltip class="item" effect="dark" content="手机端浏览体验更加" placement="right">
+							<el-link type="primary" href="../works/virus/index.html" target="_blank"><h2 class="title">仿丁香园新冠肺炎实施疫情地图</h2></el-link>
+						 </el-tooltip>
+						<div class="summary">
+							<span style="color:#000;font-size: 16px;font-weight: 500;">说明：</span>
+							使用Vue+VueRouter+Axios+vant+Echarts编写的仿丁香园新冠肺炎疫情地图
+						</div>
+						<div class="pageIntro">移动端界面如下图:</div>
+						<div class="workImg1">
+							<div :class="windowWidth>767?'img1':'img2'" v-for="(item,index) in virusImg" :key="index" style="display:inline-block">
+								<el-image :src="item" :fit="fit" ></el-image>
+							<div>
+						</div>
+					</li>
+				</ul>
+			</el-col>
+		</el-row>
+	</div>
+	<div class="footer"></div>
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="../res/layui/layui.js"></script>
+  <script type="text/javascript">
+	   $(".footer").load("footer.html")
+	  $(".headerpage").load("header.html",function(res,status,xhr){
+	  	var url = window.location.href;
+	  	if(url.match('index')){
+	  		$(".nav a").eq(0).addClass("active").siblings().removeClass("active")
+	  	}
+	  	else if(url.match('whisper')){
+	  		$(".nav a").eq(1).addClass("active").siblings().removeClass("active")
+	  	}
+	  	else if(url.match('album')){
+	  		$(".nav a").eq(2).addClass("active").siblings().removeClass("active")
+	  	}
+		else if(url.match('works')){
+			$(".nav a").eq(3).addClass("active").siblings().removeClass("active")
+		}
+	  	else{
+	  		$(".nav a").eq(4).addClass("active").siblings().removeClass("active")
+	  	}
+	  })
+    layui.config({
+      base: '../res/js/util/'
+    }).use(['element','laypage','form','layer','menu'],function(){
+      element = layui.element,laypage = layui.laypage,form = layui.form,layer = layui.layer,menu = layui.menu;
+      menu.init();
+    })
+  </script>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- 引入组件库 -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script type="text/javascript">
+	  new Vue({
+		  el:'#app',
+		  data:function(){
+			  return {
+				  shopImg:['../res/images/1.png','../res/images/2.png','../res/images/3.png','../res/images/4.png','../res/images/5.png'],
+				  fit:'fill',
+				  virusImg:['../res/images/IMG_2029.png','../res/images/IMG_2030.png','../res/images/IMG_2032.png','../res/images/IMG_2033.png','../res/images/IMG_2034.png'],
+				  windowWidth:0,
+			  }
+		  },
+		  methods:{
+			  getWidth:function(){
+				  this.windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
+			  }
+		  },
+		  watch:{
+			  
+		  },
+		  created:function() {
+		  	this.getWidth()
+		  }
+	  })
+  </script>
