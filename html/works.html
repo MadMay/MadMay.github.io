@@ -6,6 +6,20 @@
   <title>M_May的博客</title>
   <link rel="stylesheet" type="text/css" href="../res/layui/css/layui.css">
   <link rel="stylesheet" type="text/css" href="../res/css/main.css">
+  <style type="text/css">
+  	.demo-spin-icon-load{
+  	    animation: ani-demo-spin 1s linear infinite;
+  	}
+  	@keyframes ani-demo-spin {
+  	   from { transform: rotate(0deg);}
+  	   50% { transform: rotate(180deg);}
+  	   to { transform: rotate(360deg);}
+  	}
+  	/* 假如内容过长，一屏放不下，滚动条下拉覆盖不全 */
+  	.ivu-spin-fix {
+  	    position: fixed;
+  	}
+  </style>
   <!-- 引入样式 -->
   <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 <!--加载meta IE兼容文件-->
@@ -50,10 +64,29 @@
 							<div>
 						</div>
 					</li>
+					<li>
+						<el-link type="primary" href="http://thxmay.gitee.io/axjyjt" target="_blank"><h2 class="title">重构某企业官网2.0</h2></el-link>
+						<div class="summary">
+							<span style="color:#000;font-size: 16px;font-weight: 500;">说明：</span>
+							使用Vue+bootstrap+elementUI重构的某企业官网，同时兼容移动端
+						</div>
+						<div class="pageIntro">网站界面如图:</div>
+						<div class="workImg">
+							<el-carousel>
+							  <el-carousel-item v-for="(item,index) in shopImg1" :key="index" style="display:inline-block">
+								<el-image :src="item" :fit="fit"></el-image>
+							  </el-carousel-item>
+							</el-carousel>
+						</div>
+					</li>
 				</ul>
 			</el-col>
 		</el-row>
 	</div>
+	<Spin fix v-show="isSpinShow">
+	    <Icon type="load-c" size="30" class="demo-spin-icon-load"></Icon>
+	    <div>Loading...</div>
+	</Spin>
 	<div class="footer"></div>
   <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
   <script type="text/javascript" src="../res/layui/layui.js"></script>
@@ -98,6 +131,8 @@
 				  fit:'fill',
 				  virusImg:['../res/images/11.png','../res/images/22.png','../res/images/33.png','../res/images/44.png','../res/images/55.png'],
 				  windowWidth:0,
+				  shopImg1:['../res/images/a.png','../res/images/b.png','../res/images/c.png','../res/images/d.png']
+				  isSpinShow:false,
 			  }
 		  },
 		  methods:{
@@ -107,6 +142,12 @@
 		  },
 		  watch:{
 			  
+		  },
+		  beforeCreate:function(){
+			  this.isSpinShow = true;
+		  },
+		  mounted:function(){
+		  	this.isSpinShow = false;
 		  },
 		  created:function() {
 		  	this.getWidth()
